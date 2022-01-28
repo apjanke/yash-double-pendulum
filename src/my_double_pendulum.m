@@ -20,11 +20,14 @@ theta2_prime_0 = -10;
 
 % How much time, I think?
 
-tspan = 5; % I dunno what units this is in. Seconds, I guess.
+% I dunno what units this is in. Seconds, I guess.
+tspans = [2 3 5]; 
 
 % Call the function to do the actual calculation and plotting
 
-double_pendulum(l1, l2, m1, m2, tspan, theta1_0, theta1_prime_0, ...
-    theta2_0, theta2_prime_0);
+for tspan = tspans
+  double_pendulum(l1, l2, m1, m2, tspan, theta1_0, theta1_prime_0, ...
+      theta2_0, theta2_prime_0);
+end
 
 end
