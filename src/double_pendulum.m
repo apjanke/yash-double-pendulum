@@ -33,38 +33,41 @@ y2 = -l1 * cos(y(:,1)) - l2 * cos(y(:,3));
 
 % Visualizing the result
 
+% Plot the X/Y procession path
+
 fig1 = figure;
 ax = gca;
-set(fig1, 'color', 'white');
+apply_plot_cosmetics(fig1, ax);
 plot(x1, y1, 'linewidth', 2);
 hold on
 plot(x2, y2, 'r', 'linewidth', 2);
-set(ax, 'fontSize', 14);
-xlabel('X', 'fontSize', 14);
-ylabel('Y', 'fontSize', 14);
-title('Chaotic Double Pendulum','fontsize', 14);
+xlabel(ax, 'X', 'fontSize', 14);
+ylabel(ax, 'Y', 'fontSize', 14);
+title(ax, 'Chaotic Double Pendulum', 'fontsize', 14);
+
+% Plot theta1 and theta2 vs time
 
 fig2 = figure;
 ax = gca;
-set(fig2, 'color', 'white');
-plot(y(:,1), 'linewidth', 2);
+apply_plot_cosmetics(fig2, ax);
+plot(ax, theta1, 'linewidth', 2);
 hold on
-plot(y(:,3), 'r', 'linewidth', 2);
-set(ax, 'fontSize', 14);
-legend('\theta_1', '\theta_2');
-xlabel('time', 'fontSize', 14);
-ylabel('theta', 'fontSize', 14);
-title('\theta_1(t=0)=2.5 and \theta_2(t=0)=1.0','fontsize', 14);
+plot(ax, theta2, 'r', 'linewidth', 2);
+legend(ax, '\theta_1', '\theta_2');
+xlabel(ax, 'time', 'fontSize', 14);
+ylabel(ax, 'theta', 'fontSize', 14);
+title(ax, '\theta_1(t=0)=2.5 and \theta_2(t=0)=1.0','fontsize', 14);
 
-% Theta1 and 2 prime over time
+% Plot theta1 prime and theta2 prime vs time
 
 fig4 = figure;
-set(fig4, 'color', 'white');
 ax = gca;
+apply_plot_cosmetics(fig4, ax);
 plot(t, [theta1_prime, theta2_prime]);
 title(ax, 'theta1\_prime and theta2\_prime over time');
+legend(ax, '\theta_1_prime', '\theta_2_prime');
 xlabel(ax, 'Time');
-ylabel(ax, 'Theta 1 and 2 prime');
+ylabel(ax, 'theta primes');
 
 
 % Movie of double pendulum
@@ -77,7 +80,7 @@ if false
     nFrames = 0;
     fram = 0;
     ax = gca;
-    set(fig3, 'color', 'white');
+    apply_plot_cosmetics(fig3, ax);
     
     for i = 1:numel(y)
         nFrames = nFrames + 1;
@@ -90,7 +93,6 @@ if false
         line(ax, [0 x1(i)], [0 y1(i)], 'Linewidth', 2);
         axis(ax, [-(l1+l2) l1+l2 -(l1+l2) l1+l2]);
         line(ax, [x1(i) x2(i)], [y1(i) y2(i)], 'linewidth', 2);
-        set(ax, 'fontSize', 12);
         xlabel(ax, 'X', 'fontSize', 12);
         ylabel(ax, 'Y', 'fontSize', 12);
         title(ax, 'Chaotic Motion', 'fontsize', 14);
@@ -102,3 +104,9 @@ if false
 end
 
 end
+
+function apply_plot_cosmetics(fig, ax)
+set(fig, 'color', 'white');
+set(ax, 'fontSize', 14);
+end
+

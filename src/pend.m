@@ -21,7 +21,5 @@ yprime(3) = y(4);
 yprime(2) = (e*d-b*f) / (a*d-c*b);
 yprime(4) = (a*f-c*e) / (a*d-c*b);
 
-yprime = yprime';
-
 end
 
