@@ -12,7 +12,7 @@ The main script to run is `double_pendulum.m`. `pend.m` is a helper function. Ru
 
 ## Repo Structure
 
-* `opp/` - Contains the original third-party software incorporated into this project.
+* [`opp/`](https://www.youtube.com/watch?v=idx3GSL2KWs) - Contains the original third-party software incorporated into this project.
 * `src/` - The main source code directory. This is what should go on your Matlab path (using the `addpath()` function`).
 
 ## License
