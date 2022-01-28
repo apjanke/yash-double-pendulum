@@ -22,6 +22,8 @@ theta2_prime_0 = 0;
 
 tspan = 50;
 
+% Call the function to do the actual calculation and plotting
+
 double_pendulum(l1, l2, m1, m2, tspan, theta1_0, theta1_prime_0, ...
     theta2_0, theta2_prime_0);
 
