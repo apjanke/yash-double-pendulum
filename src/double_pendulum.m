@@ -8,6 +8,8 @@ function double_pendulum(l1, l2, m1, m2, tspan, theta1_0, theta1_prime_0, ...
 % See also:
 % MY_DOUBLE_PENDULUM
 
+%#ok<*DEFNU>
+
 % Gravitational constant.
 g = 9.8;
 
@@ -47,58 +49,62 @@ y1 = -l1 * cos(y(:,1));
 x2 = l1 * sin(y(:,1)) + l2 * sin(y(:,3));
 y2 = -l1 * cos(y(:,1)) - l2 * cos(y(:,3));
 
-% Visualizing the result
+% Graphics and plotting
 
-% Plot the X/Y procession path
+fig = figure;
+set(fig, 'color', 'white');
 
-fig1 = figure;
-ax = gca;
-apply_plot_cosmetics(fig1, ax);
-plot(x1, y1, 'linewidth', 2);
+ax = subplot(2, 2, 1);
+plot_xy_procession_path(ax, x1, y1, x2, y2);
+ax = subplot(2, 2, 2);
+plot_thetas_vs_time(ax, t, theta1, theta2, theta1_0, theta2_0);
+ax = subplot(2, 2, 3);
+plot_theta_primes_vs_time(ax, t, theta1_prime, theta2_prime);
+
+% Movie of double pendulum
+%
+% Actually we don't care about the movie; turn this off.
+% plot_movie(x1, y1, x2, y2, y, l1, l2);
+
+end
+
+function plot_xy_procession_path(ax, x1, y1, x2, y2)
+plot(ax, x1, y1, 'linewidth', 2);
 hold on
-plot(x2, y2, 'r', 'linewidth', 2);
+plot(ax, x2, y2, 'r', 'linewidth', 2);
+hold off
 xlabel(ax, 'X', 'fontSize', 14);
 ylabel(ax, 'Y', 'fontSize', 14);
 title(ax, 'Chaotic Double Pendulum', 'fontsize', 14);
+end
 
-% Plot theta1 and theta2 vs time
-
-fig2 = figure;
-ax = gca;
-apply_plot_cosmetics(fig2, ax);
+function plot_thetas_vs_time(ax, t, theta1, theta2, theta1_0, theta2_0)
 plot(ax, t, theta1, 'linewidth', 2);
 hold on
 plot(ax, t, theta2, 'r', 'linewidth', 2);
+hold off
 legend(ax, '\theta_1', '\theta_2');
 xlabel(ax, 'time', 'fontSize', 14);
 ylabel(ax, 'theta', 'fontSize', 14);
 title(ax, ...
   sprintf('\\theta_1(t=0)=%.1f and \\theta_2(t=0)=%.1f', theta1_0, theta2_0), ...
   'fontsize', 14);
+end
 
-% Plot theta1 prime and theta2 prime vs time
-
-fig4 = figure;
-ax = gca;
-apply_plot_cosmetics(fig4, ax);
-plot(t, [theta1_prime, theta2_prime]);
-title(ax, 'theta1\_prime and theta2\_prime over time');
-legend(ax, '\theta_1_prime', '\theta_2_prime');
+function plot_theta_primes_vs_time(ax, t, theta1_prime, theta2_prime)
+plot(ax, t, [theta1_prime, theta2_prime]);
+title(ax, '\theta1\_prime and \theta2\_prime over time');
+legend(ax, 'theta1 prime', 'theta2 prime');
 xlabel(ax, 'Time');
 ylabel(ax, 'theta primes');
+end
 
-
-% Movie of double pendulum
-
-% Actually we don't care about the movie; turn this off
-
-if false
-    
-    fig3 = figure; %#ok<UNRCH>
+function plot_movie(x1, y1, x2, y2, y, l1, l2)
+    fig = figure;
     nFrames = 0;
     fram = 0;
     ax = gca;
-    apply_plot_cosmetics(fig3, ax);
+    apply_plot_cosmetics(fig, ax);
     
     for i = 1:numel(y)
         nFrames = nFrames + 1;
@@ -118,13 +124,7 @@ if false
     end
     
     movie(F, fram, 20);
-    
-end
 
 end
 
-function apply_plot_cosmetics(fig, ax)
-set(fig, 'color', 'white');
-set(ax, 'fontSize', 14);
-end
 
