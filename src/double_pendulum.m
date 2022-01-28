@@ -66,13 +66,15 @@ title(ax, 'Chaotic Double Pendulum', 'fontsize', 14);
 fig2 = figure;
 ax = gca;
 apply_plot_cosmetics(fig2, ax);
-plot(ax, theta1, 'linewidth', 2);
+plot(ax, t, theta1, 'linewidth', 2);
 hold on
-plot(ax, theta2, 'r', 'linewidth', 2);
+plot(ax, t, theta2, 'r', 'linewidth', 2);
 legend(ax, '\theta_1', '\theta_2');
 xlabel(ax, 'time', 'fontSize', 14);
 ylabel(ax, 'theta', 'fontSize', 14);
-title(ax, '\theta_1(t=0)=2.5 and \theta_2(t=0)=1.0','fontsize', 14);
+title(ax, ...
+  sprintf('\\theta_1(t=0)=%.1f and \\theta_2(t=0)=%.1f', theta1_0, theta2_0), ...
+  'fontsize', 14);
 
 % Plot theta1 prime and theta2 prime vs time
 
