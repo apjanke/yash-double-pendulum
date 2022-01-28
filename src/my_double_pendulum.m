@@ -20,7 +20,7 @@ theta2_prime_0 = -10;
 
 % How much time, I think?
 
-tspan = 50;
+tspan = 10; % I dunno what units this is in
 
 % Call the function to do the actual calculation and plotting
 
