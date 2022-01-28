@@ -18,8 +18,26 @@ theta1_prime_0 = 0;
 theta2_0 = 2.2;
 theta2_prime_0 = 0;
 
+
+    function yprime = my_local_pend(t, y)
+        yprime = zeros(4, 1);
+        
+        a = (m1+m2) * l1;
+        b = m2 * l2 * cos(y(1) - y(3));
+        c = m2 * l1 * cos(y(1) - y(3));
+        d = m2 * l2;
+        e = -m2 * l2 * y(4) * y(4) * sin(y(1) - y(3)) - g * (m1 + m2) * sin(y(1));
+        f = m2 * l1 * y(2) * y(2) * sin(y(1) - y(3)) - m2 * g * sin(y(3));
+        
+        yprime(1) = y(2);
+        yprime(3) = y(4);
+        yprime(2) = (e*d-b*f) / (a*d-c*b);
+        yprime(4) = (a*f-c*e) / (a*d-c*b);
+        
+    end
+
 y_0 = [theta1_0 theta1_prime_0 theta2_0 theta2_prime_0];
-[t, y] = ode45(@pend, [0, tspan], [2.5 0 1 0]);
+[t, y] = ode45(@my_local_pend, [0, tspan], y_0);
 
 % Here's the time series of each variable
 [theta1, theta1_prime, theta2, theta2_prime] = deal(y(:,1), y(:,2), y(:,3), y(:,4));
