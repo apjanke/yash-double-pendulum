@@ -1,5 +1,8 @@
 function [yprime] = pend(t, y)
 % Does something about pendulum motion.
+%
+% This function is currently unused, and replace dby my_local_pend() inside
+% the main double_pendulum function!
 
 l1 = 1;
 l2 = 2;

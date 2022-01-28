@@ -19,10 +19,13 @@ theta2_0 = 2.2;
 theta2_prime_0 = 0;
 
 
-    function yprime = my_local_pend(t, y)
+    function yprime = my_local_pend(t, y) %#ok<INUSL>
+        % Pendulum action step function
+        
+        % NOTE: I do not know why we are ignoring the "t" input argument!
         yprime = zeros(4, 1);
         
-        a = (m1+m2) * l1;
+        a = (m1 + m2) * l1;
         b = m2 * l2 * cos(y(1) - y(3));
         c = m2 * l1 * cos(y(1) - y(3));
         d = m2 * l2;
