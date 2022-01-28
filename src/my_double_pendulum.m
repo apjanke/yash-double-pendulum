@@ -13,10 +13,10 @@ m2 = 1;
 
 % Initial condition
 
-theta1_0 = 1.6;
-theta1_prime_0 = 0;
-theta2_0 = 2.2;
-theta2_prime_0 = 0;
+theta1_0 = 0;
+theta1_prime_0 = -1;
+theta2_0 = 0;
+theta2_prime_0 = -10;
 
 % How much time, I think?
 
