@@ -1,23 +1,18 @@
-function double_pendulum
+function double_pendulum(l1, l2, m1, m2, tspan, theta1_0, theta1_prime_0, ...
+    theta2_0, theta2_prime_0)
 % Make some plots of double pendulum behavior.
 %
+% This function takes a bunch of inputs. See the my_double_pendulum
+% function for an example of how to set them up.
 %
+% See also:
+% MY_DOUBLE_PENDULUM
 
-% TODO: What do all these short variable names mean?
-l1 = 1;
-l2 = 2;
-m1 = 2;
-m2 = 1;
+% Gravitational constant.
 g = 9.8;
 
-% Initial condition
 
-tspan = 50;
-theta1_0 = 1.6;
-theta1_prime_0 = 0;
-theta2_0 = 2.2;
-theta2_prime_0 = 0;
-
+% Here's the step function that calculates the pendulum behavior.
 
     function yprime = my_local_pend(t, y) %#ok<INUSL>
         % Pendulum action step function
